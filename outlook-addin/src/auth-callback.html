@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Authentication Callback</title>
+    <!-- Office.js must be loaded first -->
+    <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -45,7 +47,8 @@
     </div>
     
     <script>
-        (function() {
+        // Wait for Office to be ready before processing
+        Office.onReady(function() {
             // Parse the URL fragment to get the access token
             const hash = window.location.hash.substring(1);
             const params = new URLSearchParams(hash);
@@ -72,10 +75,7 @@
                     error_description: 'No access token received from authentication provider'
                 }));
             }
-        })();
+        });
     </script>
-    
-    <!-- Office.js is required for dialog communication -->
-    <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
 </body>
 </html>

@@ -171,12 +171,17 @@ function addTagToList(tag: string) {
     <span class="tag-remove" data-tag="${tag}">&times;</span>
   `;
   
-  tagElement.querySelector('.tag-remove')?.addEventListener('click', (e) => {
+  tagElement.querySelector('.tag-remove')?.addEventListener('click', async (e) => {
     const tagToRemove = (e.target as HTMLElement).dataset.tag;
     if (tagToRemove) {
-      emailService.removeCustomTag(tagToRemove);
-      tagElement.remove();
-      showStatus('Tag removed', 'success');
+      try {
+        await emailService.removeCustomTag(tagToRemove);
+        tagElement.remove();
+        showStatus('Tag removed', 'success');
+      } catch (error) {
+        console.error('Error removing tag:', error);
+        showStatus('Failed to remove tag', 'error');
+      }
     }
   });
   

@@ -25,8 +25,12 @@ export class SharePointService {
   
   constructor() {
     this.authService = new AuthService();
-    // This should be configured in environment or config file
-    this.siteUrl = 'https://yourtenant.sharepoint.com/sites/yoursite';
+    // Load from environment - MUST be configured before deployment
+    this.siteUrl = process.env.SHAREPOINT_SITE_URL || '';
+    
+    if (!this.siteUrl) {
+      console.warn('SharePoint site URL not configured. Please set SHAREPOINT_SITE_URL environment variable.');
+    }
   }
   
   /**
@@ -190,11 +194,22 @@ ${content.body}
    * Sanitize file name to be SharePoint-compatible
    */
   private sanitizeFileName(fileName: string): string {
+    if (!fileName || fileName.trim().length === 0) {
+      return 'unnamed_file';
+    }
+    
     // Remove invalid characters for SharePoint
-    return fileName
+    let sanitized = fileName
       .replace(/[~#%&*{}\\:<>?/|"]/g, '_')
       .replace(/\s+/g, '_')
       .substring(0, 128); // Limit length
+    
+    // Ensure filename is not all underscores
+    if (/^_+$/.test(sanitized)) {
+      sanitized = 'file_' + Date.now();
+    }
+    
+    return sanitized;
   }
   
   /**

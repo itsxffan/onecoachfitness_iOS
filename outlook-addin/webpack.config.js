@@ -74,7 +74,7 @@ module.exports = (env, argv) => {
       port: 3000,
       hot: true,
       headers: {
-        'Access-Control-Allow-Origin': '*'
+        'Access-Control-Allow-Origin': 'https://outlook.office.com, https://outlook.live.com, https://outlook.office365.com'
       },
       https: true
     }

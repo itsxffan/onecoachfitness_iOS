@@ -228,7 +228,9 @@ export class EmailService {
   }
   
   /**
-   * Save custom tags to local storage
+   * Save custom tags to storage
+   * Note: Using localStorage for simplicity. For cross-client persistence,
+   * consider using Office.context.roamingSettings or server-side storage.
    */
   private saveCustomTags(): void {
     try {
@@ -236,22 +238,35 @@ export class EmailService {
       this.customTags.forEach((value, key) => {
         tagsObject[key] = value;
       });
+      
+      // Save to localStorage (client-specific)
       localStorage.setItem('custom_email_tags', JSON.stringify(tagsObject));
+      
+      // TODO: For cross-client persistence, also save to Office.context.roamingSettings
+      // Office.context.roamingSettings.set('custom_email_tags', tagsObject);
+      // Office.context.roamingSettings.saveAsync();
     } catch (error) {
       console.error('Error saving custom tags:', error);
     }
   }
   
   /**
-   * Load custom tags from local storage
+   * Load custom tags from storage
    */
   private loadCustomTags(): void {
     try {
+      // Load from localStorage
       const stored = localStorage.getItem('custom_email_tags');
       if (stored) {
         const tagsObject = JSON.parse(stored);
         this.customTags = new Map(Object.entries(tagsObject));
       }
+      
+      // TODO: For cross-client persistence, load from Office.context.roamingSettings
+      // const roamingTags = Office.context.roamingSettings.get('custom_email_tags');
+      // if (roamingTags) {
+      //   this.customTags = new Map(Object.entries(roamingTags));
+      // }
     } catch (error) {
       console.error('Error loading custom tags:', error);
     }

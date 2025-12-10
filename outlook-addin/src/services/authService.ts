@@ -99,9 +99,14 @@ export class AuthService {
    * Build Azure AD authentication URL
    */
   private buildAuthUrl(): string {
-    // These should be configured in environment or config file
-    const clientId = 'YOUR_AZURE_AD_CLIENT_ID';
-    const tenantId = 'common'; // or specific tenant ID
+    // Load from environment or config - MUST be configured before deployment
+    const clientId = process.env.AZURE_AD_CLIENT_ID || '';
+    const tenantId = process.env.AZURE_AD_TENANT_ID || 'common';
+    
+    if (!clientId) {
+      throw new Error('Azure AD Client ID not configured. Please set AZURE_AD_CLIENT_ID environment variable.');
+    }
+    
     const redirectUri = encodeURIComponent(window.location.origin + '/auth-callback.html');
     const scope = encodeURIComponent('https://graph.microsoft.com/.default');
     
