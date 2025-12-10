@@ -100,10 +100,10 @@ export class AuthService {
    */
   private buildAuthUrl(): string {
     // Load from environment or config - MUST be configured before deployment
-    const clientId = process.env.AZURE_AD_CLIENT_ID || '';
+    const clientId = process.env.AZURE_AD_CLIENT_ID;
     const tenantId = process.env.AZURE_AD_TENANT_ID || 'common';
     
-    if (!clientId) {
+    if (!clientId || clientId === 'CONFIGURE_BEFORE_DEPLOYMENT') {
       throw new Error('Azure AD Client ID not configured. Please set AZURE_AD_CLIENT_ID environment variable.');
     }
     

@@ -6,6 +6,9 @@
   xmlns:mailappor="http://schemas.microsoft.com/office/mailappversionoverrides/1.0" 
   xsi:type="MailApp">
   
+  <!-- IMPORTANT: Generate a unique GUID before deployment to prevent conflicts -->
+  <!-- Use: uuidgen (Mac/Linux) or [guid]::NewGuid() (PowerShell) or node -e "console.log(require('crypto').randomUUID())" -->
+  <!-- See CONFIGURATION.md for detailed instructions -->
   <Id>a1b2c3d4-e5f6-4a5b-8c9d-0e1f2a3b4c5d</Id>
   <Version>1.0.0.0</Version>
   <ProviderName>OneCoach Fitness</ProviderName>

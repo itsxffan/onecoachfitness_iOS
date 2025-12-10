@@ -74,7 +74,11 @@ module.exports = (env, argv) => {
       port: 3000,
       hot: true,
       headers: {
-        'Access-Control-Allow-Origin': 'https://outlook.office.com, https://outlook.live.com, https://outlook.office365.com'
+        // Note: For multiple origins, proper CORS handling should be done server-side
+        // For local dev, this allows Outlook domains
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Origin, Content-Type, Accept'
       },
       https: true
     }

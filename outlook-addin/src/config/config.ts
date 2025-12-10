@@ -5,9 +5,10 @@
 
 export const config = {
   // Azure AD Configuration
+  // NOTE: Configure these values via environment variables before deployment
   azureAd: {
-    clientId: 'YOUR_AZURE_AD_CLIENT_ID',
-    tenantId: 'common', // or your specific tenant ID
+    clientId: process.env.AZURE_AD_CLIENT_ID || 'CONFIGURE_BEFORE_DEPLOYMENT',
+    tenantId: process.env.AZURE_AD_TENANT_ID || 'common',
     redirectUri: window.location.origin + '/auth-callback.html',
     scopes: [
       'User.Read',
@@ -18,8 +19,9 @@ export const config = {
   },
   
   // SharePoint Configuration
+  // NOTE: Configure via SHAREPOINT_SITE_URL environment variable
   sharepoint: {
-    siteUrl: 'https://yourtenant.sharepoint.com/sites/yoursite',
+    siteUrl: process.env.SHAREPOINT_SITE_URL || 'CONFIGURE_BEFORE_DEPLOYMENT',
     defaultLibraries: [
       { id: 'ClientDocuments', name: 'Client Documents' },
       { id: 'TrainingMaterials', name: 'Training Materials' },

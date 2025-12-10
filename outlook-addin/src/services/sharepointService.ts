@@ -28,8 +28,9 @@ export class SharePointService {
     // Load from environment - MUST be configured before deployment
     this.siteUrl = process.env.SHAREPOINT_SITE_URL || '';
     
-    if (!this.siteUrl) {
+    if (!this.siteUrl || this.siteUrl === 'CONFIGURE_BEFORE_DEPLOYMENT') {
       console.warn('SharePoint site URL not configured. Please set SHAREPOINT_SITE_URL environment variable.');
+      console.warn('SharePoint integration will not work until configured.');
     }
   }
   
