@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OneCoach Email Manager</title>
+    <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+</head>
+<body>
+    <div id="root">
+        <div class="container">
+            <header class="header">
+                <h1>Email Manager</h1>
+            </header>
+            
+            <section class="auth-section" id="authSection">
+                <div class="info-message">
+                    <p>Sign in to access email management features and SharePoint integration.</p>
+                </div>
+                <button id="loginButton" class="ms-Button ms-Button--primary">
+                    Sign In with Microsoft
+                </button>
+            </section>
+            
+            <section class="main-content" id="mainContent" style="display: none;">
+                <div class="message-info" id="messageInfo">
+                    <h2>Current Message</h2>
+                    <div id="messageDetails"></div>
+                </div>
+                
+                <div class="actions-section">
+                    <h3>Actions</h3>
+                    
+                    <div class="action-group">
+                        <h4>Categories</h4>
+                        <div class="category-buttons">
+                            <button class="ms-Button category-btn" data-category="Important">Important</button>
+                            <button class="ms-Button category-btn" data-category="Follow Up">Follow Up</button>
+                            <button class="ms-Button category-btn" data-category="Client">Client</button>
+                            <button class="ms-Button category-btn" data-category="Training">Training</button>
+                        </div>
+                    </div>
+                    
+                    <div class="action-group">
+                        <h4>Tags</h4>
+                        <input type="text" id="tagInput" class="ms-TextField" placeholder="Add custom tag...">
+                        <button id="addTagButton" class="ms-Button ms-Button--primary">Add Tag</button>
+                        <div id="tagsList" class="tags-list"></div>
+                    </div>
+                    
+                    <div class="action-group">
+                        <h4>Archive</h4>
+                        <button id="archiveButton" class="ms-Button ms-Button--default">
+                            Archive Message
+                        </button>
+                    </div>
+                    
+                    <div class="action-group">
+                        <h4>SharePoint Integration</h4>
+                        <select id="librarySelect" class="ms-Dropdown">
+                            <option value="">Select document library...</option>
+                            <option value="ClientDocuments">Client Documents</option>
+                            <option value="TrainingMaterials">Training Materials</option>
+                            <option value="GeneralArchive">General Archive</option>
+                        </select>
+                        <button id="pushToSharePointButton" class="ms-Button ms-Button--primary">
+                            Push to SharePoint
+                        </button>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="includeAttachments" checked>
+                            <label for="includeAttachments">Include attachments</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="status-section" id="statusSection"></div>
+            </section>
+        </div>
+    </div>
+</body>
+</html>
