@@ -57,6 +57,11 @@ module.exports = (env, argv) => {
             from: 'manifest.xml',
             to: 'manifest.xml',
             noErrorOnMissing: true
+          },
+          {
+            from: 'src/auth-callback.html',
+            to: 'auth-callback.html',
+            noErrorOnMissing: true
           }
         ]
       })
