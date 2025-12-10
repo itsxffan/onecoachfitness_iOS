@@ -88,3 +88,13 @@ fastlane/test_output
 # https://github.com/johnno1962/injectionforxcode
 
 iOSInjectionProject/
+
+# Outlook Add-in (Node.js)
+outlook-addin/node_modules/
+outlook-addin/dist/
+outlook-addin/.env
+outlook-addin/npm-debug.log*
+outlook-addin/yarn-debug.log*
+outlook-addin/yarn-error.log*
+outlook-addin/*.cer
+outlook-addin/*.pfx
